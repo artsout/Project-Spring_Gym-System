@@ -1,4 +1,4 @@
-HELP.md
+System/HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -34,4 +34,4 @@ build/
 
 
 **/application.properties
-**/compose.yaml
+**/docker-compose.yml
