@@ -15,9 +15,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "schedule",indexes = {
-        @Index(name = "idx-schedule-ready-wourkout", columnList = "readyWorkout"),
-        @Index(name = "idx-scheduleCreationDate", columnList = "scheduleCreationDate"),
-        @Index(name = "idx-scheduleExpirationDate", columnList = "scheduleExpirationDate")
+        @Index(name = "idx_schedule_ready_wourkout", columnList = "readyWorkout"),
+        @Index(name = "idx_scheduleCreationDate", columnList = "scheduleCreationDate"),
+        @Index(name = "idx_scheduleExpirationDate", columnList = "scheduleExpirationDate")
 })
 @Data
 @AllArgsConstructor
@@ -39,10 +39,10 @@ public class Schedule {
     private Integer quantOfWorkouts;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ready-workou-schedule")
+    @JoinColumn(name = "ready_workout_schedule")
     private ReadyWorkout readyWorkout;
 
 
-    @OneToMany(mappedBy = "schedule",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @OneToMany(mappedBy = "userSchedule",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Set<User> userThatUsesThisSchedule = new HashSet<>();
 }

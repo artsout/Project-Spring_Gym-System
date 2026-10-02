@@ -1,6 +1,7 @@
 package com.Gym.System.Model.Users_Models;
 
 
+import com.Gym.System.Model.Address.Address;
 import com.Gym.System.Model.Workout_Models.PersonalizedWorkout;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -39,6 +40,9 @@ public class Personal {
 
     private String perfilImageUrl;
 
+    @Embedded
+    @Column
+    private Address address;
 
     @CreatedDate
     @Column(nullable = false,updatable = false)

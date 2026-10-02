@@ -38,9 +38,9 @@ public class ReadyWorkout {
     private Integer quantityOfDays;//determina quant de dias
 
 
-    @OneToMany(mappedBy = "ready-workout",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @OneToMany(mappedBy = "readyWorkout",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Set<Schedule> scheduleReadyWorkout = new HashSet<>();
 
-    @OneToMany(mappedBy = "ready-workout" , cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @OneToMany(mappedBy = "readyWorkout" , cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Set<WorkoutDays> readyWorkoutDays = new HashSet<>();
 }

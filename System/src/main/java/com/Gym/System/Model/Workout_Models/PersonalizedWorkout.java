@@ -43,9 +43,9 @@ public class PersonalizedWorkout {
     @JoinColumn(name = "personalized-workout-personal")
     private Personal personal;
 
-    @OneToMany(mappedBy = "personalized-workout",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @OneToMany(mappedBy = "personalizedWorkout",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Set<PersonalizedSchedule> schedulePersonalizedWorkout = new HashSet<>();
 
-    @OneToMany(mappedBy = "personalized-workout" , cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @OneToMany(mappedBy = "personalizedWorkout" , cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Set<WorkoutDays> personalizedWorkoutDays = new HashSet<>();
 }

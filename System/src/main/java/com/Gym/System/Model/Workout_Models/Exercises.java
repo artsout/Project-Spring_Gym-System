@@ -11,12 +11,17 @@ import java.util.Set;
 
 @Entity
 @Table(name = "exercises",indexes = {
+        @Index(name = "idx_exercises_muscular_group", columnList = "muscularGroup")
 
 })
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Exercises {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column
     private String name;

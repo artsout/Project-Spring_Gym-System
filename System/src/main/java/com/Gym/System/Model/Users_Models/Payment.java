@@ -26,12 +26,10 @@ import java.util.UUID;
 public class Payment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(nullable = false, unique = true, updatable = false, columnDefinition = "BINARY(16)")
-    private UUID publicId;
+    private UUID id;
+
+
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

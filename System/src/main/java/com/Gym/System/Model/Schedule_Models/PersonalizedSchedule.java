@@ -1,5 +1,6 @@
 package com.Gym.System.Model.Schedule_Models;
 
+import com.Gym.System.Model.Workout_Models.PersonalizedWorkout;
 import com.Gym.System.Model.Workout_Models.ReadyWorkout;
 import com.Gym.System.Model.Users_Models.User;
 import jakarta.persistence.*;
@@ -13,9 +14,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "personalized-schedule",indexes = {
-        @Index(name = "idx-scheduleCreationDate", columnList = "scheduleCreationDate"),
-        @Index(name = "idx-scheduleExpirationDate", columnList = "scheduleExpirationDate")
+@Table(name = "personalized_schedule",indexes = {
+        @Index(name = "idx_scheduleCreationDate", columnList = "scheduleCreationDate"),
+        @Index(name = "idx_scheduleExpirationDate", columnList = "scheduleExpirationDate")
 })
 @Data
 @AllArgsConstructor
@@ -37,10 +38,10 @@ public class PersonalizedSchedule {
     private Integer quantOfWorkouts;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ready-workou-personalized-schedule")
-    private ReadyWorkout readyWorkout;
+    @JoinColumn(name = "ready_workout_personalized_schedule")
+    private PersonalizedWorkout personalizedWorkout;
 
 
-    @OneToMany(mappedBy = "personalized-schedule",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @OneToMany(mappedBy = "personalizedSchedule",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Set<User> userThatUsesThisSchedule = new HashSet<>();
 }

@@ -51,6 +51,7 @@ public class User {
     @Column(nullable = false,updatable = false)
     private LocalDateTime userCreationDate;
 
+    @Embedded
     @Column
     private Address address;
 
@@ -73,7 +74,7 @@ public class User {
     @JoinColumn(name = "user-personalized-schedule")
     private PersonalizedSchedule personalizedSchedule;
 
-    @OneToMany(mappedBy = "payment",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private Set<Payment> userPayment = new HashSet<>();
 
 

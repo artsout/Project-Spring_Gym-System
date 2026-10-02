@@ -17,6 +17,10 @@ import java.util.Set;
 @NoArgsConstructor
 public class Plan {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Enumerated(EnumType.STRING)
     private UserPlan userPlan;
 
@@ -24,7 +28,7 @@ public class Plan {
 
     private Double discount;
 
-    @OneToMany(mappedBy = "plan",cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @OneToMany(mappedBy = "userPlan",cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private Set<User> usersThatHaveThisPlan =new HashSet<>();
 
 }

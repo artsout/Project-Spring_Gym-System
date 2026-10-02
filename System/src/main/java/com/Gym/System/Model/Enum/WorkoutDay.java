@@ -1,6 +1,6 @@
 package com.Gym.System.Model.Enum;
 
-public enum WorkoutDays {
+public enum WorkoutDay {
     SEGUNDA,
     TERCA,
     QUARTA,
