@@ -2,6 +2,7 @@ package com.Gym.System.Model.Workout_Models;
 
 
 import com.Gym.System.Model.Enum.WorkoutType;
+import com.Gym.System.Model.Users_Models.MadeWorkout;
 import com.Gym.System.Model.Schedule_Models.Schedule;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,9 +15,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "ready-workout",indexes = {
-    @Index(name = "idx-workout-name",columnList = "workoutType"),
-    @Index(name = "idx-workout-date",columnList = "workoutCreationDate")
+@Table(name = "ready_workout",indexes = {
+    @Index(name = "idx_workout_name",columnList = "workoutType"),
+    @Index(name = "idx_workout_date",columnList = "workoutCreationDate")
 })
 @Data
 @AllArgsConstructor
@@ -43,4 +44,8 @@ public class ReadyWorkout {
 
     @OneToMany(mappedBy = "readyWorkout" , cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Set<WorkoutDays> readyWorkoutDays = new HashSet<>();
+
+
+    @OneToMany(mappedBy = "readyWorkout",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    private Set<MadeWorkout> userReadyMadeWorkout = new HashSet<>();
 }

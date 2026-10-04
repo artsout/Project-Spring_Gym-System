@@ -1,6 +1,7 @@
 package com.Gym.System.Model.Users_Models;
 
 
+import com.Gym.System.Model.Enum.PaymentStatus;
 import com.Gym.System.Model.Enum.PaymentType;
 import com.Gym.System.Model.Workout_Models.PersonalizedWorkout;
 import jakarta.persistence.*;
@@ -38,6 +39,9 @@ public class Payment {
 
     @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
+
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus paymentStatus;
 
     @ManyToOne(optional = false,fetch = FetchType.LAZY)
     @JoinColumn(name = "user-payment")

@@ -2,6 +2,7 @@ package com.Gym.System.Model.Users_Models;
 
 
 import com.Gym.System.Model.Address.Address;
+import com.Gym.System.Model.Ranking.UserBadges;
 import com.Gym.System.Model.Schedule_Models.PersonalizedSchedule;
 import com.Gym.System.Model.Schedule_Models.Schedule;
 import jakarta.persistence.*;
@@ -74,8 +75,18 @@ public class User {
     @JoinColumn(name = "user-personalized-schedule")
     private PersonalizedSchedule personalizedSchedule;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_progress")
+    private Progress progress;
+
+
+    @OneToMany(mappedBy = "user",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Set<Payment> userPayment = new HashSet<>();
 
+    @OneToMany(mappedBy = "user",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    private Set<MadeWorkout> userMadeWorkout = new HashSet<>();
 
+    @OneToMany(mappedBy = "user",cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    private Set<UserBadges> userBadges = new HashSet<>();
 }

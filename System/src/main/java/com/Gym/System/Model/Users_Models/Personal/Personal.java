@@ -1,4 +1,4 @@
-package com.Gym.System.Model.Users_Models;
+package com.Gym.System.Model.Users_Models.Personal;
 
 
 import com.Gym.System.Model.Address.Address;
