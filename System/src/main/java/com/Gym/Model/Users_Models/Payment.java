@@ -1,0 +1,53 @@
+package com.Gym.Model.Users_Models;
+
+
+import com.Gym.Model.Enum.PaymentStatus;
+import com.Gym.Model.Enum.PaymentType;
+import com.Gym.Model.Workout_Models.PersonalizedWorkout;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
+@Entity
+@Table(name = "payment",indexes = {
+    @Index(name = "idx-user",columnList = "user"),
+        @Index(name = "idx-payment-type",columnList = "paymentType"),
+        @Index(name = "idx-payment-date",columnList = "paymentCreationDate")
+})
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Payment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+
+
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime paymentCreationDate;
+
+
+    @Enumerated(EnumType.STRING)
+    private PaymentType paymentType;
+
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus paymentStatus;
+
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
+    @JoinColumn(name = "user-payment")
+    private User user;
+
+    @OneToMany(mappedBy = "payment",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    private Set<PersonalizedWorkout> personalizedWorkoutPayments= new HashSet<>();
+
+}

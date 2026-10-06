@@ -34,4 +34,7 @@ build/
 
 
 **/application.properties
-**/docker-compose.yml
+docker-compose.yml
+.env/
+**/private.pem
+**/public.pem
