@@ -2,6 +2,7 @@ package com.Gym.Model.Users_Models.Personal;
 
 
 import com.Gym.Model.Address.Address;
+import com.Gym.Model.Users_Models.Personal.Db.PersonalComment;
 import com.Gym.Model.Users_Models.Personal.Db.PersonalLike;
 import com.Gym.Model.Workout_Models.PersonalizedWorkout;
 import jakarta.persistence.*;
@@ -74,11 +75,17 @@ public class Personal {
     @Column
     private Integer experienceYears;
 
+    @ColumnDefault("0")
+    private Long personalCountLikes;
+
     @OneToMany(mappedBy = "personal", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<PersonalizedWorkout> workoutMadeByPersonal = new HashSet<>();
 
     @OneToMany(mappedBy = "personal", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<PersonalLike> personalLikes = new HashSet<>();
+
+    @OneToMany(mappedBy = "personal", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Set<PersonalComment> personalComments = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

@@ -121,9 +121,9 @@ public class UserService {
         String codigo = cpfLimpo.substring(user.getCpf().length()-4);
 
 
-
-
         return ano + mesFormatado + codigo;
     }
+
+
 
 }

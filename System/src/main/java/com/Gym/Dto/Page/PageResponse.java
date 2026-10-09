@@ -1,7 +1,7 @@
 package com.Gym.Dto.Page;
 
+import com.Gym.Model.Users_Models.Personal.Db.PersonalLike;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -13,7 +13,9 @@ public record PageResponse<T>(
         int totalPages,
         boolean isLast
 ) {
-   
+
+
+
     public static <T> PageResponse<T> from(Page<T> page) {
         return new PageResponse<>(
                 page.getContent(),

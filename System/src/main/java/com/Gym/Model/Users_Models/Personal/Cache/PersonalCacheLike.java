@@ -12,7 +12,7 @@ import org.springframework.data.redis.core.index.Indexed;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonalCacheLike {
+public class PersonalCacheLike{
 
     @Id
     private String id;

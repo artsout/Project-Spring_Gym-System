@@ -5,6 +5,7 @@ import com.Gym.Model.Address.Address;
 import com.Gym.Model.Ranking.UserBadges;
 import com.Gym.Model.Schedule_Models.PersonalizedSchedule;
 import com.Gym.Model.Schedule_Models.Schedule;
+import com.Gym.Model.Users_Models.Personal.Db.PersonalComment;
 import com.Gym.Model.Users_Models.Personal.Db.PersonalLike;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -103,6 +104,9 @@ public class User {
     @OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL)
     private Set<PersonalLike> userLikes = new HashSet<>();
 
+
+    @OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL)
+    private Set<PersonalComment> userComments = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

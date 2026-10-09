@@ -118,6 +118,27 @@ public class PersonalService {
 
     }
 
+    public void updateCountLikes(UUID personalId , Long quantity){
+        if (personalId==null || quantity ==null ){
+            throw  new MethodParameterNull("parameter cant be null");
+        }
+        Personal personal = findById(personalId);
+
+        personal.setPersonalCountLikes(quantity);
 
 
+        personalRepository.save(personal);
+    }
+
+
+    public void updateCountComment(UUID personalId, Long quantity) {
+        if (personalId==null || quantity ==null ){
+            throw  new MethodParameterNull("parameter cant be null");
+        }
+        Personal personal = findById(personalId);
+
+         personal.setPersonalCountLikes(quantity);
+
+        personalRepository.save(personal);
+    }
 }

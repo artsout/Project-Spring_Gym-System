@@ -1,4 +1,4 @@
-package com.Gym.Repository.Rating;
+package com.Gym.Repository.Rating.Like;
 
 import com.Gym.Model.Users_Models.Personal.Cache.PersonalCacheLike;
 import org.springframework.data.repository.CrudRepository;

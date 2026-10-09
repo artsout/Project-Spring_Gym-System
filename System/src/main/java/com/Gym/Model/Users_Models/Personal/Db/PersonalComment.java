@@ -7,25 +7,33 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ManyToAny;
+import org.springframework.data.annotation.CreatedDate;
 
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "personal_like",
+@Table(name = "personal_comment",
+
 uniqueConstraints = {
 @UniqueConstraint(
-        name = "uk_user_personal_like", // Nome da regra no banco (opcional)
+        name = "uk_user_personal_comment", // Nome da regra no banco (opcional)
         columnNames = {"user_id", "personal_id"} // Nomes EXATOS das colunas no banco
 )
     })
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonalLike {
+public class PersonalComment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @CreatedDate
+    private LocalDateTime createdDate;
+
+    @Column(nullable = false)
+    private String description;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -35,3 +43,4 @@ public class PersonalLike {
     @JoinColumn(name = "personal_id")
     private Personal personal;
 }
+
