@@ -2,14 +2,18 @@ package com.Gym.Model.Users_Models.Personal;
 
 
 import com.Gym.Model.Address.Address;
+import com.Gym.Model.Users_Models.Personal.Db.PersonalLike;
 import com.Gym.Model.Workout_Models.PersonalizedWorkout;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.security.crypto.password4j.Argon2Password4jPasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -41,6 +45,10 @@ public class Personal {
     @Email
     private String email;
 
+    @NotBlank
+    @Column(name = "password", unique = true ,nullable = false)
+    private String password;
+
     private String perfilImageUrl;
 
     @Embedded
@@ -69,6 +77,9 @@ public class Personal {
     @OneToMany(mappedBy = "personal", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<PersonalizedWorkout> workoutMadeByPersonal = new HashSet<>();
 
+    @OneToMany(mappedBy = "personal", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Set<PersonalLike> personalLikes = new HashSet<>();
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name ="personal_role_join",
@@ -76,4 +87,9 @@ public class Personal {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<PersonalRole> roles = new HashSet<>();
+
+
+    public boolean isPasswordCorrect(@NotBlank @Size(min = 5,max = 20) String password, Argon2Password4jPasswordEncoder passwordEncoder) {
+        return passwordEncoder.matches(password , this.password);
+    }
 }

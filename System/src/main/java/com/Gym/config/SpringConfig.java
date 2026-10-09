@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password4j.Argon2Password4jPasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
@@ -39,6 +40,7 @@ public class SpringConfig {
 
     @Value("${rsa.private-key}")
     private RSAPrivateKey privateKey;
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
@@ -88,8 +90,8 @@ public class SpringConfig {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
-        return Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
+    public Argon2Password4jPasswordEncoder  passwordEncoder(){
+        return new Argon2Password4jPasswordEncoder();
     }
 
 }

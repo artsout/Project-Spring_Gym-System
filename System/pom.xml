@@ -109,6 +109,11 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.password4j</groupId>
+			<artifactId>password4j</artifactId>
+			<version>1.8.4</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security-oauth2-client-test</artifactId>
 			<scope>test</scope>
@@ -135,25 +140,25 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.13.0</version>
 				<configuration>
 					<annotationProcessorPaths>
-
+						<!-- 1º LOMBOK -->
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
 						</path>
-
+						<!-- 2º MAPSTRUCT BINDING (Se necessário para sua versão) -->
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok-mapstruct-binding</artifactId>
 							<version>0.2.0</version>
 						</path>
-
+						<!-- 3º MAPSTRUCT -->
 						<path>
 							<groupId>org.mapstruct</groupId>
 							<artifactId>mapstruct-processor</artifactId>
-							<version>1.5.5.Final</version>
+							<version>1.6.2</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>

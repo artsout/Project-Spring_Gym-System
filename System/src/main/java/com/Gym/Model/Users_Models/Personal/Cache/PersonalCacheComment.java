@@ -1,4 +1,4 @@
-package com.Gym.Model.Users_Models.Personal;
+package com.Gym.Model.Users_Models.Personal.Cache;
 
 
 import lombok.AllArgsConstructor;
@@ -8,11 +8,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.index.Indexed;
 
-@RedisHash(value = "personal_likes")
+
+@RedisHash(value = "personal_like")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonalLike {
+public class PersonalCacheComment {
 
     @Id
     private String id;
@@ -20,8 +21,9 @@ public class PersonalLike {
     @Indexed
     private String userId;
 
+
+    private String ratingComment;
+
     @Indexed
     private String personalId;
-
-
 }

@@ -1,4 +1,4 @@
-package com.Gym.Controller;
+package com.Gym.Controller.AuthController;
 
 
 import com.Gym.Dto.User.Auth.UserLoginDto;

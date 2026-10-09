@@ -5,7 +5,7 @@ import com.Gym.Model.Address.Address;
 import com.Gym.Model.Ranking.UserBadges;
 import com.Gym.Model.Schedule_Models.PersonalizedSchedule;
 import com.Gym.Model.Schedule_Models.Schedule;
-import com.Gym.Model.Users_Models.Personal.PersonalRole;
+import com.Gym.Model.Users_Models.Personal.Db.PersonalLike;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -14,8 +14,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password4j.Argon2Password4jPasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -46,6 +47,10 @@ public class User {
 
     @Column(unique = true,updatable = false)
     private String matricula;
+
+    @CPF
+    @Column(unique = true,nullable = false)
+    private String cpf;
 
     @Column(unique = true)
     private String password;
@@ -95,6 +100,10 @@ public class User {
     private Set<UserBadges> userBadges = new HashSet<>();
 
 
+    @OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL)
+    private Set<PersonalLike> userLikes = new HashSet<>();
+
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name ="personal_role_join",
@@ -103,7 +112,8 @@ public class User {
     )
     private Set<UserRole> roles = new HashSet<>();
 
-    public boolean isPasswordCorrect(@NotBlank @Size(min = 5,max = 20) String password, PasswordEncoder passwordEncoder) {
+
+    public boolean isPasswordCorrect(@NotBlank @Size(min = 5,max = 20) String password, Argon2Password4jPasswordEncoder passwordEncoder) {
        return passwordEncoder.matches(password , this.password);
     }
 }
